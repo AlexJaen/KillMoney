@@ -1,0 +1,44 @@
+# KillMoney (sesion 2026-08-17, plugin propio a peticion del usuario:
+# "Con respecto al plugin de robo de % de dinero, vamos a hacerlo
+# nosotros. Quiero que se llame KillMoney") -- al matar a otro jugador en
+# PVP con un golpe directo (Player#getKiller() no nulo), el asesino le
+# roba un porcentaje de TODO el dinero que la victima tiene en ese
+# momento, via Vault (funciona con cualquier plugin de economia
+# compatible, en este server EssentialsX).
+
+settings:
+  # Porcentaje del dinero TOTAL de la victima que se roba (0-100).
+  percentage: 10.0
+
+  # La victima debe tener AL MENOS esta cantidad para que se le pueda
+  # robar nada. Evita robos ridiculos de centimos a jugadores casi sin
+  # dinero. Pon 0 para desactivar este minimo.
+  minimum-victim-balance: 50.0
+
+  # Tope maximo que se puede robar de un solo kill, sin importar el
+  # porcentaje configurado arriba. -1 = sin tope.
+  maximum-steal-amount: -1.0
+
+  # Anunciar el robo a todo el servidor, ademas de a los dos jugadores
+  # implicados?
+  broadcast: false
+
+  # Sesion 2026-11-08: si asesino y victima tienen la MISMA IP, no se roba
+  # nada (evita pasarse dinero entre cuentas propias). Si el proxy no
+  # reenvia la IP real (loopback), la comprobacion se ignora.
+  block-same-ip: true
+
+messages:
+  prefix: "&6[&eKillMoney&6]&r "
+  # Placeholders: %amount% (lo robado, ya formateado por Vault),
+  # %victim%, %balance% (saldo del asesino DESPUES del robo)
+  killer-message: "&aHas robado &f$%amount% &aa &f%victim%&a. Ahora tienes &f$%balance%&a."
+  # Placeholders: %amount%, %killer%, %balance% (saldo de la victima
+  # DESPUES del robo)
+  victim-message: "&c%killer% &7te ha robado &f$%amount%&7. Te quedan &f$%balance%&7."
+  # Placeholders: %amount%, %killer%, %victim%
+  broadcast-message: "&e%killer% &7le ha robado &f$%amount% &7a &e%victim%&7 en combate!"
+  # Mensaje que recibe el ASESINO si la victima no llegaba al minimo de
+  # settings.minimum-victim-balance (no se le roba nada). Placeholder:
+  # %victim%. Dejalo vacio ("") para no enviar ningun mensaje en ese caso.
+  victim-too-poor: "&7%victim% no llevaba suficiente dinero encima para robarle nada."

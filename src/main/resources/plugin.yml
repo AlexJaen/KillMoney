@@ -1,0 +1,31 @@
+name: KillMoney
+main: com.df15.killmoney.KillMoney
+version: '1.0.0'
+api-version: '1.21'
+author: DF15
+description: Roba un porcentaje del dinero total de un jugador al matarlo en PVP.
+# Vault es OBLIGATORIO (no softdepend) -- este plugin no tiene ninguna
+# funcion sin una economia de verdad detras. Ver KillMoney.java para el
+# chequeo adicional en tiempo de ejecucion (Vault puede estar instalado
+# sin ningun Economy realmente registrado, p.ej. si EssentialsX no ha
+# cargado todavia o no esta).
+depend: [Vault]
+# WorldGuard (sesion 2026-08-17): softdepend, no depend -- si no esta
+# instalado, KillMoney sigue funcionando en todo el mapa igual que
+# siempre. Si SI esta instalado, se registra una flag custom "killmoney"
+# (ver WorldGuardHook.java) para poder desactivar el robo por region,
+# p.ej. en un patio de practica PVP: "/rg flag TheYard killmoney deny".
+softdepend: [Essentials, WorldGuard]
+commands:
+  killmoney:
+    description: Recarga la configuracion de KillMoney.
+    usage: /killmoney reload
+    aliases: [km]
+    permission: killmoney.admin
+permissions:
+  killmoney.admin:
+    description: Permite recargar la configuracion de KillMoney.
+    default: op
+  killmoney.bypass:
+    description: Si la VICTIMA tiene este permiso, no se le puede robar dinero al matarla (pensado para staff/pruebas).
+    default: false
