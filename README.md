@@ -1,6 +1,6 @@
 # KillMoney
 
-Plugin de Paper (1.21.x / 26.x) que, al matar a un jugador en PvP, le roba al asesino un **porcentaje del dinero total** de la víctima mediante Vault.
+Plugin de Paper (1.21.x / 26.x) que, al matar a un jugador en PvP, el asesino roba un **porcentaje del dinero total** de la víctima mediante Vault.
 
 ## Características
 - Porcentaje configurable, saldo mínimo de la víctima y tope máximo por kill.
